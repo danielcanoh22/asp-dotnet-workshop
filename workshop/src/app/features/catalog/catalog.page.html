@@ -1,0 +1,31 @@
+<section class="hero">
+  <div class="hero__inner">
+    <p class="hero__eyebrow">Workshop práctico</p>
+    <h1>Aprende <span class="gradient">ASP.NET Core</span> construyendo, paso a paso</h1>
+    <p class="hero__lead">
+      Tutoriales muy detallados para crear APIs reales en tu equipo con Visual Studio 2026 y .NET 10. En cada paso
+      primero entiendes el porqué de cada concepto y después lo aplicas, con checkpoints para comprobar que vas bien
+      y retos para practicar lo que ya dominas.
+    </p>
+    <ul class="hero__facts">
+      <li><span class="material-symbols-outlined" aria-hidden="true">psychology</span>Concepto primero, código después</li>
+      <li><span class="material-symbols-outlined" aria-hidden="true">computer</span>Instrucciones exactas para Visual Studio</li>
+      <li><span class="material-symbols-outlined" aria-hidden="true">ads_click</span>Retos con pistas y solución</li>
+    </ul>
+  </div>
+</section>
+
+<section class="catalog" aria-labelledby="catalog-heading">
+  <h2 id="catalog-heading" class="catalog__heading">Tutoriales</h2>
+  <div class="grid">
+    @for (entry of entries(); track entry.tutorial.slug) {
+      <app-tutorial-card
+        [tutorial]="entry.tutorial"
+        [status]="entry.status"
+        [percent]="entry.percent"
+        [minutes]="entry.minutes"
+        [link]="entry.link"
+      />
+    }
+  </div>
+</section>

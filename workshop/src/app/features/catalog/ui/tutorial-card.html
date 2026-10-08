@@ -1,0 +1,40 @@
+<article class="card" [class.card--soon]="!available()" [attr.data-status]="status()">
+  <header class="card__top">
+    <span class="card__number" aria-hidden="true">{{ numberLabel() }}</span>
+    <app-level-chip class="card__level" [level]="tutorial().level" />
+    @if (available()) {
+      <span class="badge badge--{{ status() }}">{{ statusLabel() }}</span>
+    } @else {
+      <span class="badge badge--soon">Próximamente</span>
+    }
+  </header>
+
+  <h2 class="card__title">{{ tutorial().title }}</h2>
+  <p class="card__subtitle">{{ tutorial().subtitle }}</p>
+
+  @if (duration()) {
+    <p class="card__meta">
+      <span class="material-symbols-outlined" aria-hidden="true">schedule</span>{{ duration() }}
+      @if (available()) {
+        <span class="card__dot" aria-hidden="true">·</span>{{ tutorial().steps.length }} pasos
+      }
+    </p>
+  }
+
+  <ul class="card__topics" aria-label="Temas">
+    @for (topic of tutorial().topics; track topic) {
+      <li>{{ topic }}</li>
+    }
+  </ul>
+
+  @if (available()) {
+    <div class="card__progress">
+      <mat-progress-bar mode="determinate" [value]="percent()" [attr.aria-label]="'Progreso: ' + percent() + '%'" />
+      <span class="card__percent">{{ percent() }}%</span>
+    </div>
+    <a class="card__link" [routerLink]="link()">
+      {{ ctaLabel() }}
+      <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+    </a>
+  }
+</article>
