@@ -1,0 +1,35 @@
+@use '@angular/material' as mat;
+@use './theme-colors' as colors;
+
+// Material 3 theme built from the .NET purple (#512BD4).
+// `theme-type: color-scheme` emits `light-dark()` tokens, so the palette follows `color-scheme`.
+html {
+  color-scheme: light dark;
+
+  @include mat.theme(
+    (
+      color: (
+        theme-type: color-scheme,
+        primary: colors.$primary-palette,
+        tertiary: colors.$tertiary-palette,
+      ),
+      typography: (
+        plain-family: ('Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif),
+        brand-family: ('Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif),
+        bold-weight: 700,
+        medium-weight: 500,
+        regular-weight: 400,
+      ),
+      density: 0,
+    )
+  );
+}
+
+// The toolbar toggle forces a scheme; without it the system preference applies.
+html[data-theme='light'] {
+  color-scheme: light;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+}

@@ -1,0 +1,84 @@
+// Prism token colors. `light-dark()` follows the page `color-scheme`, so one rule set serves both themes.
+code[class*='language-'],
+pre[class*='language-'] {
+  color: light-dark(#24292f, #e6e1f5);
+  font-family: var(--ws-font-mono);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  tab-size: 4;
+  hyphens: none;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: light-dark(#6a737d, #8b87a3);
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: light-dark(#57606a, #a9a5c4);
+}
+
+.token.namespace {
+  opacity: 0.75;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: light-dark(#b3261e, #ff8f85);
+}
+
+.token.boolean,
+.token.number {
+  color: light-dark(#0a6c74, #5fd8d0);
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: light-dark(#0b6b3a, #8fe0a8);
+}
+
+.token.operator,
+.token.entity,
+.token.url {
+  color: light-dark(#8a4b00, #ffc27a);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: light-dark(#5a2fd1, #b9a6ff);
+}
+
+.token.function,
+.token.class-name {
+  color: light-dark(#0b57d0, #8ab4ff);
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: light-dark(#a1371c, #ffa07a);
+}
+
+.token.important,
+.token.bold {
+  font-weight: 600;
+}
+
+.token.italic {
+  font-style: italic;
+}

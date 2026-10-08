@@ -1,0 +1,345 @@
+// Styles for rendered tutorial Markdown. Global because the HTML is injected at runtime
+// (Angular view encapsulation would not reach it). Everything is scoped under `.markdown-body`.
+.markdown-body {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--mat-sys-on-surface);
+  overflow-wrap: anywhere;
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    scroll-margin-top: 5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin: 2.5rem 0 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin: 2rem 0 0.5rem;
+  }
+
+  p,
+  ul,
+  ol {
+    margin: 0 0 1.1rem;
+  }
+
+  li {
+    margin: 0.25rem 0;
+  }
+
+  img {
+    max-width: 100%;
+    border-radius: var(--ws-radius-sm);
+  }
+
+  blockquote {
+    margin: 1.25rem 0;
+    padding: 0.25rem 1rem;
+    border-left: 4px solid var(--mat-sys-primary);
+    background: var(--mat-sys-surface-container-low);
+    border-radius: 0 var(--ws-radius-sm) var(--ws-radius-sm) 0;
+    color: var(--mat-sys-on-surface-variant);
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--mat-sys-outline-variant);
+    margin: 2rem 0;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 0 0 1.25rem;
+    max-width: 100%;
+  }
+
+  th,
+  td {
+    border: 1px solid var(--mat-sys-outline-variant);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+
+  th {
+    background: var(--mat-sys-surface-container);
+  }
+
+  // Inline code
+  :not(pre) > code {
+    font-family: var(--ws-font-mono);
+    font-size: 0.875em;
+    padding: 0.15em 0.4em;
+    border-radius: 6px;
+    background: var(--mat-sys-surface-container-high);
+    color: var(--mat-sys-on-surface);
+  }
+
+  kbd {
+    font-family: var(--ws-font-mono);
+    font-size: 0.85em;
+    padding: 0.1em 0.45em;
+    border: 1px solid var(--mat-sys-outline);
+    border-bottom-width: 2px;
+    border-radius: 6px;
+    background: var(--mat-sys-surface-container-low);
+  }
+}
+
+// Code blocks -------------------------------------------------------------
+.markdown-body .code-block {
+  margin: 1.25rem 0 1.5rem;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: var(--ws-radius-sm);
+  background: light-dark(#f7f6fb, #16141f);
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.5rem 0.45rem 0.9rem;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+    background: light-dark(#efedf8, #201d2e);
+    font-family: var(--ws-font-mono);
+    font-size: 0.8rem;
+    color: var(--mat-sys-on-surface-variant);
+  }
+
+  &__filename {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__lang {
+    margin-left: auto;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.7rem;
+    opacity: 0.7;
+  }
+
+  &__copy {
+    all: unset;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-family: var(--ws-font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--mat-sys-primary);
+    transition: background-color 0.15s;
+
+    &:hover {
+      background: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--mat-sys-primary);
+    }
+
+    &.is-copied {
+      color: var(--mat-sys-tertiary);
+    }
+
+    .material-symbols-outlined {
+      font-size: 1rem;
+    }
+  }
+
+  &__header + pre {
+    border-top: 0;
+  }
+
+  pre {
+    margin: 0;
+    padding: 1rem 1.1rem;
+    overflow-x: auto;
+    background: transparent;
+  }
+
+  pre > code {
+    background: transparent;
+    padding: 0;
+  }
+
+  // Header-less blocks keep the copy button floating in the corner.
+  &--bare {
+    position: relative;
+
+    .code-block__copy {
+      position: absolute;
+      top: 0.4rem;
+      right: 0.4rem;
+      background: light-dark(#f7f6fb, #16141f);
+    }
+  }
+}
+
+// Callouts ----------------------------------------------------------------
+.markdown-body .callout {
+  --callout-accent: var(--mat-sys-primary);
+  margin: 1.5rem 0;
+  border-left: 4px solid var(--callout-accent);
+  border-radius: 0 var(--ws-radius-sm) var(--ws-radius-sm) 0;
+  background: color-mix(in srgb, var(--callout-accent) 9%, var(--mat-sys-surface));
+  padding: 0.9rem 1.1rem 0.4rem;
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--callout-accent);
+  }
+
+  &__icon {
+    font-size: 1.3rem;
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-weight: 600;
+    color: var(--mat-sys-on-surface);
+  }
+
+  &__body > :last-child {
+    margin-bottom: 0.6rem;
+  }
+
+  &--concept { --callout-accent: light-dark(#5a2fd1, #b9a6ff); }
+  &--why { --callout-accent: light-dark(#0b57d0, #8ab4ff); }
+  &--tip { --callout-accent: light-dark(#0b6b3a, #8fe0a8); }
+  &--warning { --callout-accent: light-dark(#a35200, #ffc27a); }
+  &--vs { --callout-accent: light-dark(#512bd4, #c9beff); }
+  &--checkpoint { --callout-accent: light-dark(#0a6c74, #5fd8d0); }
+  &--troubleshooting { --callout-accent: light-dark(#b3261e, #ff8f85); }
+  &--recap { --callout-accent: light-dark(#5f5a78, #c5c0dc); }
+}
+
+// Challenge ---------------------------------------------------------------
+.markdown-body .challenge {
+  margin: 2rem 0;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: var(--ws-radius);
+  background: var(--mat-sys-surface-container-low);
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.2rem;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--mat-sys-primary) 18%, transparent),
+      color-mix(in srgb, var(--mat-sys-tertiary) 12%, transparent)
+    );
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+  }
+
+  &__icon {
+    color: var(--mat-sys-primary);
+    font-size: 1.4rem;
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mat-sys-primary);
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+
+  &__body {
+    padding: 1rem 1.2rem 0.4rem;
+  }
+
+  &__body > :last-child {
+    margin-bottom: 0.8rem;
+  }
+}
+
+.markdown-body .challenge-hint,
+.markdown-body .challenge-solution {
+  margin: 0.75rem 0;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: var(--ws-radius-sm);
+  background: var(--mat-sys-surface);
+
+  > summary {
+    cursor: pointer;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::before {
+      content: '\25B8';
+      transition: transform 0.15s;
+      color: var(--mat-sys-primary);
+    }
+  }
+
+  &[open] > summary::before {
+    transform: rotate(90deg);
+  }
+
+  > .challenge-detail__body {
+    padding: 0 1rem 0.4rem;
+  }
+
+  &__note {
+    margin: 0 0 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: color-mix(in srgb, var(--mat-sys-primary) 10%, transparent);
+    color: var(--mat-sys-on-surface-variant);
+  }
+}
