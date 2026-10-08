@@ -14,7 +14,7 @@ export const BOOKSHELF_API: TutorialManifest = {
     'Aprende los pilares de ASP.NET Core construyendo una API REST para gestionar una biblioteca de libros: ' +
     'desde el pipeline HTTP hasta la validación y la documentación, entendiendo el porqué de cada pieza.',
   level: 'beginner',
-  estimatedMinutes: 240,
+  estimatedMinutes: 330,
   topics: ['Controllers', 'Routing', 'DI', 'Services', 'Middleware', 'Configuration', 'Validation'],
   status: 'available',
   whatYouWillBuild:
@@ -22,12 +22,12 @@ export const BOOKSHELF_API: TutorialManifest = {
     'validación con ProblemDetails, manejo global de errores, logging y documentación con OpenAPI y Scalar.',
   steps: [
     step(1, 'what-is-dotnet', '¿Qué es .NET y ASP.NET Core?', 15),
-    step(2, 'create-project', 'Crear el proyecto en Visual Studio 2026', 15),
+    step(2, 'create-project', 'Crear el proyecto en Visual Studio 2026', 20),
     step(3, 'project-tour', 'Recorrido por el proyecto', 15),
-    step(4, 'http-basics', 'HTTP en 10 minutos', 10),
+    step(4, 'http-basics', 'HTTP en 10 minutos', 15),
     step(5, 'host-and-builder', 'El host: de CreateBuilder a app.Run()', 20),
-    step(6, 'middleware-pipeline', 'Middleware y el pipeline HTTP', 20),
-    step(7, 'first-controller', 'Tu primer modelo y controller', 25),
+    step(6, 'middleware-pipeline', 'Middleware y el pipeline HTTP', 25),
+    step(7, 'first-controller', 'Tu primer modelo y controller', 30),
     step(8, 'dependency-injection', 'Inyección de dependencias', 25),
     step(9, 'json-repository', 'Persistencia en un archivo JSON', 25),
     step(10, 'configuration-options', 'Configuración y Options pattern', 20),
