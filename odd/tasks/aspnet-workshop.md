@@ -63,13 +63,13 @@ Code fences accept `title="path/File.cs"` → rendered as a filename header. Eve
 Hints and solution are collapsed `<details>`; the solution shows a "try it first" note.
 
 ## Tasks
-- [ ] T1 Scaffold: Angular 22 app in `workshop/` (bun), Material M3 theme, ngx-markdown + Prism, test runner verified, README + .gitignore. Route: delegated (writer trigger: 2+ non-trivial files).
-- [ ] T2 Content engine: manifest types, registry, content service, marked extension for custom blocks + titled code fences + copy button, with tests. Route: delegated.
-- [ ] T3 Catalog screen: elegant cards (number, title, level, duration, topics, progress, status, coming-soon). Route: delegated.
-- [ ] T4 Overview + step reader + progress service (sidebar TOC with checks, prev/next, mark complete, global progress). Route: delegated.
-- [ ] T5 Reference Bookshelf API built and verified with .NET 10 (build, run, every endpoint smoke-tested) in `reference-solutions/01-bookshelf-api/`. Route: delegated (verification worker).
-- [ ] T6 Tutorial 1 content, steps 00–07. Route: delegated.
-- [ ] T7 Tutorial 1 content, steps 08–14. Route: delegated.
+- [x] T1 Scaffold: Angular 22 app in `workshop/` (bun), Material M3 theme, ngx-markdown + Prism, test runner verified, README + .gitignore. Route: delegated (writer trigger: 2+ non-trivial files).
+- [x] T2 Content engine: manifest types, registry, content service, marked extension for custom blocks + titled code fences + copy button, with tests. Route: delegated.
+- [x] T3 Catalog screen: elegant cards (number, title, level, duration, topics, progress, status, coming-soon). Route: delegated.
+- [x] T4 Overview + step reader + progress service (sidebar TOC with checks, prev/next, mark complete, global progress). Route: delegated.
+- [x] T5 Reference Bookshelf API built and verified with .NET 10 (build, run, every endpoint smoke-tested) in `reference-solutions/01-bookshelf-api/`. Route: delegated (verification worker).
+- [ ] T6 Tutorial 1 content: overview + steps 01–07. Route: delegated.
+- [ ] T7 Tutorial 1 content: steps 08–15. Route: delegated.
 - [ ] T8 Final verification: `ng build` production, tests, content readback, code-in-content matches reference. Route: inline/delegated verifier.
 
 ## Acceptance criteria
@@ -85,5 +85,17 @@ Hints and solution are collapsed `<details>`; the solution shows a "try it first
 ## Progress / Evidence
 - 2026-10-08: repo initialized (`main` root commit 5475057), branch `feat/aspnet-workshop` created.
 
+- T1–T4 (delegated writer, trigger: 2+ non-trivial files): commits ccef837..eaad0e4 (17 commits, TDD RED commits included).
+  `bunx ng test --watch=false`: 12 files / 113 tests passed (re-run by parent as spot check: 113 passed).
+  `bunx ng build`: success, no warnings, 448 kB initial raw / 123 kB transfer.
+  Visual browser check pending (Chrome extension not connected); rendering covered by jsdom tests.
+- T5 (delegated verification worker in scratch): .NET 10.0.401, Bookshelf.slnx, Scalar.AspNetCore 2.17.14.
+  `dotnet build`: 0 warnings/0 errors; every endpoint smoke-tested (200/201/204/400/404/500 ProblemDetails, persistence after restart).
+  HTTPS response untested (curl/schannel), redirect 307 observed. Copied to repo: commits 1b54621, 61e6f95; parent rebuild: 0 errors.
+- Review: RDD off (global). `gentle-ai review assess --base-ref main --committed-only --untracked-scope=exclude`: risk medium
+  (executable_change .gitattributes), review_due slice_budget_reached; RDD off → no review started; writer self-verification + parent spot check.
+- Delivery: branch exceeds ~400 authored lines; chain strategy question deferred to the user at close (no PR requested yet).
+- Steps finalized at 15 (added 13 complete-crud challenges, moved http-basics before host/middleware).
+
 ## Next step
-T1 + T5 (T5 builds in scratch, no repo writes until copied).
+T6 content writer (overview + steps 01–07), then T7 (steps 08–15), then T8.
