@@ -68,7 +68,7 @@ Hints and solution are collapsed `<details>`; the solution shows a "try it first
 - [x] T3 Catalog screen: elegant cards (number, title, level, duration, topics, progress, status, coming-soon). Route: delegated.
 - [x] T4 Overview + step reader + progress service (sidebar TOC with checks, prev/next, mark complete, global progress). Route: delegated.
 - [x] T5 Reference Bookshelf API built and verified with .NET 10 (build, run, every endpoint smoke-tested) in `reference-solutions/01-bookshelf-api/`. Route: delegated (verification worker).
-- [ ] T6 Tutorial 1 content: overview + steps 01–07. Route: delegated.
+- [x] T6 Tutorial 1 content: overview + steps 01–07. Route: delegated.
 - [ ] T7 Tutorial 1 content: steps 08–15. Route: delegated.
 - [ ] T8 Final verification: `ng build` production, tests, content readback, code-in-content matches reference. Route: inline/delegated verifier.
 
@@ -97,5 +97,7 @@ Hints and solution are collapsed `<details>`; the solution shows a "try it first
 - Delivery: branch exceeds ~400 authored lines; chain strategy question deferred to the user at close (no PR requested yet).
 - Steps finalized at 15 (added 13 complete-crud challenges, moved http-basics before host/middleware).
 
+- T6 (delegated writer): commits 5711ab1..879e077 (one per file). Replay of steps 01–07 in scratch built 0 errors at steps 03/05/06/07, checkpoints curled, challenge solutions verified; ng test 113 passed; ng build ok; container balance check clean. VS 2026 UI facts confirmed via MS Learn or caveated in text.
+
 ## Next step
-T6 content writer (overview + steps 01–07), then T7 (steps 08–15), then T8.
+T7 in progress (steps 08–15, continuing replay from end-of-step-07), then T8.
