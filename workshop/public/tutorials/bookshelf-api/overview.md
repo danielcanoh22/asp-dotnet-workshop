@@ -157,7 +157,7 @@ Cuando termines un paso, márcalo como completado con el botón del lector. Tu p
 
 ## Tiempo estimado
 
-Entre 5 y 6 horas en total. Recomendamos dividirlo en sesiones de 1 a 2 horas; cada paso es un buen punto para parar, porque al final de cada uno el proyecto compila.
+Entre 6 y 7 horas en total. Recomendamos dividirlo en sesiones de 1 a 2 horas; cada paso es un buen punto para parar, porque al final de cada uno el proyecto compila.
 
 ## Pasos del tutorial
 
