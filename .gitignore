@@ -11,3 +11,6 @@ obj/
 
 # Node
 node_modules/
+
+# Local AI tooling cache
+.atl/
