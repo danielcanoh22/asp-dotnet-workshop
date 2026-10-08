@@ -69,8 +69,8 @@ Hints and solution are collapsed `<details>`; the solution shows a "try it first
 - [x] T4 Overview + step reader + progress service (sidebar TOC with checks, prev/next, mark complete, global progress). Route: delegated.
 - [x] T5 Reference Bookshelf API built and verified with .NET 10 (build, run, every endpoint smoke-tested) in `reference-solutions/01-bookshelf-api/`. Route: delegated (verification worker).
 - [x] T6 Tutorial 1 content: overview + steps 01–07. Route: delegated.
-- [ ] T7 Tutorial 1 content: steps 08–15. Route: delegated.
-- [ ] T8 Final verification: `ng build` production, tests, content readback, code-in-content matches reference. Route: inline/delegated verifier.
+- [x] T7 Tutorial 1 content: steps 08–15. Route: delegated.
+- [x] T8 Final verification: `ng build` production, tests, content readback, code-in-content matches reference. Route: inline/delegated verifier.
 
 ## Acceptance criteria
 - Adding a tutorial = new content folder + manifest + one registry line; no component changes.
@@ -99,5 +99,8 @@ Hints and solution are collapsed `<details>`; the solution shows a "try it first
 
 - T6 (delegated writer): commits 5711ab1..879e077 (one per file). Replay of steps 01–07 in scratch built 0 errors at steps 03/05/06/07, checkpoints curled, challenge solutions verified; ng test 113 passed; ng build ok; container balance check clean. VS 2026 UI facts confirmed via MS Learn or caveated in text.
 
+- T7 (delegated writer): commits 864f968..de64f04. Replay built 0 warnings/0 errors after every step 08–15; checkpoints and challenge solutions curled. Final `diff -r` replay vs reference: only ports differ (launchSettings, .http host). Tutorial total 410 min. Findings documented in content: OpenAPI omits inferred 200 when an action has [ProducesResponseType] (step 13/15 tip); PATCH {} clears rating (design choice).
+- T8 (parent): ng test 113 passed; ng build ok; working tree clean; dev server served app + overview/08/15 markdown (200). Real-browser visual check NOT done (Chrome extension not connected).
+
 ## Next step
-T7 in progress (steps 08–15, continuing replay from end-of-step-07), then T8.
+Visual browser check by the user (`cd workshop && bun start`); decide PR chain strategy before opening PRs; tutorial 2 when requested.
