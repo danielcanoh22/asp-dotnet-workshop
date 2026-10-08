@@ -21,6 +21,11 @@ bun run test         # unit tests (Angular unit-test builder + Vitest)
 bun run build        # production build in workshop/dist
 ```
 
+> `katex` and `marked-katex-extension` are installed even though the workshop does not render math:
+> ngx-markdown dynamically imports `marked-katex-extension`, and the Vite dev server fails with
+> HTTP 500 on the ngx-markdown module when that optional peer cannot be resolved. The production
+> build is unaffected either way.
+
 ## How to add a tutorial
 
 Adding a tutorial never requires touching a component.
