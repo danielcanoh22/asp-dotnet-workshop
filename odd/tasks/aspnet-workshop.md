@@ -102,5 +102,7 @@ Hints and solution are collapsed `<details>`; the solution shows a "try it first
 - T7 (delegated writer): commits 864f968..de64f04. Replay built 0 warnings/0 errors after every step 08–15; checkpoints and challenge solutions curled. Final `diff -r` replay vs reference: only ports differ (launchSettings, .http host). Tutorial total 410 min. Findings documented in content: OpenAPI omits inferred 200 when an action has [ProducesResponseType] (step 13/15 tip); PATCH {} clears rating (design choice).
 - T8 (parent): ng test 113 passed; ng build ok; working tree clean; dev server served app + overview/08/15 markdown (200). Real-browser visual check NOT done (Chrome extension not connected).
 
+- T8 follow-up (parent, inline): `ng serve` returned HTTP 500 for the ngx-markdown dep (Vite could not resolve optional dynamic import `marked-katex-extension`); tests and prod build had not caught it. Fix: installed katex@^0.16 + marked-katex-extension@^5 (fcc2c99), documented in README. Re-check: dep HTTP 200, no errors in serve log; ng test 113 passed; ng build ok (initial 448.73 kB).
+
 ## Next step
 Visual browser check by the user (`cd workshop && bun start`); decide PR chain strategy before opening PRs; tutorial 2 when requested.
