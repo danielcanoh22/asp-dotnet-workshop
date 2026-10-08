@@ -1,0 +1,7 @@
+// Add in Program.cs, in the Services section (before builder.Build()):
+using Bookshelf.Api.Lifetimes;
+
+builder.Services.AddSingleton<ISingletonOperation, Operation>();
+builder.Services.AddScoped<IScopedOperation, Operation>();
+builder.Services.AddTransient<ITransientOperation, Operation>();
+builder.Services.AddTransient<OperationService>();
