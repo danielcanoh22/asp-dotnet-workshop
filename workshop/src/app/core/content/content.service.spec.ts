@@ -30,7 +30,12 @@ const SAMPLE = manifest({
     { id: 'three', title: 'Three', file: '03-three.md', estimatedMinutes: 7 },
   ],
 });
-const FIRST = manifest({ slug: 'zeta', number: 1 });
+const FIRST = manifest({
+  slug: 'zeta',
+  number: 1,
+  estimatedMinutes: 30,
+  steps: [{ id: 'only', title: 'Only', file: '01-only.md', estimatedMinutes: 30 }],
+});
 const SOON = manifest({ slug: 'soon', number: 3, status: 'coming-soon' });
 
 describe('ContentService', () => {
@@ -111,7 +116,8 @@ describe('ContentService', () => {
 
   it('sums the step minutes of a tutorial', () => {
     expect(service.getTotalMinutes(SAMPLE)).toBe(18);
-    expect(service.getTotalMinutes(FIRST)).toBe(FIRST.estimatedMinutes);
+    expect(service.getTotalMinutes(FIRST)).toBe(30);
+    expect(service.getTotalMinutes(SOON)).toBe(SOON.estimatedMinutes);
   });
 });
 
