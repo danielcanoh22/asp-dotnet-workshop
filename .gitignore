@@ -1,0 +1,13 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vs/
+.idea/
+
+# .NET build output
+bin/
+obj/
+*.user
+
+# Node
+node_modules/
