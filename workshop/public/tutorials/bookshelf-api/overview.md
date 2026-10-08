@@ -135,22 +135,22 @@ Cliente HTTP ──▶ Controller ──▶ Service ──▶ Repository ──�
 
 Esta aplicación es una **guía**: nada se ejecuta en el navegador. Tú construyes el proyecto en tu máquina, en Visual Studio, y consultas aquí qué hacer y por qué. Te recomendamos tener las dos ventanas abiertas, una al lado de la otra.
 
-Cada paso sigue el mismo orden: primero se explica el concepto, después se dan las instrucciones exactas, luego el código con su explicación línea a línea, y por último una comprobación para confirmar que todo funciona. Los bloques de colores tienen un significado fijo:
+Cada paso sigue el mismo orden: primero se explica el concepto, después se dan las instrucciones exactas, luego el código con su explicación línea a línea, y por último una comprobación para confirmar que todo funciona. Los bloques de colores tienen un significado fijo (cada uno lleva su propio icono):
 
 | Bloque | Qué encontrarás |
 | --- | --- |
-| 🧠 **Concepto** | Qué es algo, qué problema resuelve y un ejemplo pequeño. |
-| ❓ **¿Por qué?** | La razón de una decisión de diseño. |
-| 🛠️ **En Visual Studio** | Los clics, menús y atajos exactos del IDE. |
-| 💡 **Consejo** | Atajos y buenas prácticas opcionales. |
-| ⚠️ **Advertencia** | Algo que puede darte problemas si lo pasas por alto. |
-| ✅ **Punto de control** | Cómo verificar que el paso funciona y qué resultado esperar. |
-| 🔥 **Errores comunes** | Mensajes de error reales y cómo resolverlos. |
-| 🎯 **Reto** | Un ejercicio para practicar algo que ya has visto. |
-| 📌 **Resumen** | Lo esencial del paso y qué viene a continuación. |
+| **Concepto** | Qué es algo, qué problema resuelve y un ejemplo pequeño. |
+| **¿Por qué?** | La razón de una decisión de diseño. |
+| **En Visual Studio** | Los clics, menús y atajos exactos del IDE. |
+| **Tip** | Atajos y buenas prácticas opcionales. |
+| **Atención** | Algo que puede darte problemas si lo pasas por alto. |
+| **Checkpoint** | Cómo verificar que el paso funciona y qué resultado esperar. |
+| **Errores comunes** | Mensajes de error reales y cómo resolverlos. |
+| **Reto** | Un ejercicio para practicar algo que ya has visto, con pistas numeradas y una solución desplegable. |
+| **Resumen** | Lo esencial del paso y qué viene a continuación. |
 
 :::tip Cómo trabajar los retos
-Los retos aparecen cuando ya has practicado el patrón que necesitas. Intenta resolverlos **por tu cuenta** primero. Si te atascas, abre las pistas **de una en una** (van de lo vago a lo concreto). Solo cuando hayas probado tu solución, o si sigues bloqueado, abre la solución y compárala con la tuya. Equivocarte y depurar es parte del aprendizaje.
+Los retos aparecen cuando ya has practicado el patrón que necesitas. Intenta resolverlos **por tu cuenta** primero. Si te atascas, abre las **pistas** de una en una (van de lo vago a lo concreto). Solo cuando hayas probado tu solución, o si sigues bloqueado, abre **Ver solución** y compárala con la tuya. Equivocarte y depurar es parte del aprendizaje.
 :::
 
 Cuando termines un paso, márcalo como completado con el botón del lector. Tu progreso se guarda en este navegador.
