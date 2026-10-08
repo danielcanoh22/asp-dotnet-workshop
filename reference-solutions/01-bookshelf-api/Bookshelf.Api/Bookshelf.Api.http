@@ -1,0 +1,63 @@
+@Bookshelf.Api_HostAddress = http://localhost:5125
+
+### List all books
+GET {{Bookshelf.Api_HostAddress}}/api/books
+Accept: application/json
+
+### Filter by genre and read status
+GET {{Bookshelf.Api_HostAddress}}/api/books?genre=Fantasy&isRead=true
+Accept: application/json
+
+### Get one book
+GET {{Bookshelf.Api_HostAddress}}/api/books/1
+Accept: application/json
+
+### Get a book that does not exist (404)
+GET {{Bookshelf.Api_HostAddress}}/api/books/999
+Accept: application/json
+
+### Create a book (201 + Location header)
+POST {{Bookshelf.Api_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "title": "Pedro Páramo",
+  "author": "Juan Rulfo",
+  "year": 1955,
+  "genre": "Fiction"
+}
+
+### Create with invalid data (400 validation problem)
+POST {{Bookshelf.Api_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "title": "",
+  "author": "Someone",
+  "year": 5,
+  "genre": "Fiction"
+}
+
+### Update a book (204)
+PUT {{Bookshelf.Api_HostAddress}}/api/books/3
+Content-Type: application/json
+
+{
+  "title": "La casa de los espíritus",
+  "author": "Isabel Allende",
+  "year": 1982,
+  "genre": "Fiction",
+  "isRead": true,
+  "rating": 4
+}
+
+### Mark as read with a rating
+PATCH {{Bookshelf.Api_HostAddress}}/api/books/6/read
+Content-Type: application/json
+
+{
+  "rating": 5
+}
+
+### Delete a book (204)
+DELETE {{Bookshelf.Api_HostAddress}}/api/books/8
