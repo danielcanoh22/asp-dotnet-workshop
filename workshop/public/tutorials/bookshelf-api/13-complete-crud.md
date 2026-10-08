@@ -35,7 +35,7 @@ Una acción como `GetById` puede devolver `200` (por el tipo `ActionResult<BookR
 `StatusCodes` es una clase estática de ASP.NET Core (espacio de nombres `Microsoft.AspNetCore.Http`, incluido en los *implicit usings*) con una constante por cada código HTTP, para no escribir números mágicos.
 :::
 
-Convención del tutorial: para una acción que devuelve `ActionResult<T>`, el `200` ya queda implícito por el `T`, así que solo declaramos los **otros** códigos. Para una acción que devuelve `IActionResult` (sin tipo), declaramos todos.
+Convención del tutorial: en las acciones que devuelven `ActionResult<T>` declaramos los códigos de **error** (y el `201` de `Create`), y dejamos sin declarar el `200` del éxito habitual. Para una acción que devuelve `IActionResult` (sin tipo), declaramos todos, incluido el éxito. En el paso 15 verás una consecuencia de esta convención en la documentación generada y cómo mejorarla.
 
 Empieza aplicándolo a las dos acciones que ya tienes. Añade los atributos justo bajo `[HttpGet("{id:int}")]` y `[HttpPost]`:
 
@@ -488,7 +488,7 @@ Cómo funciona:
 
 - `MarkAsReadRequest` es un DTO propio porque la operación pide **menos** que un `PUT` (solo una valoración opcional) y tiene su propia regla (1 a 5). Reutilizar `UpdateBookRequest` obligaría a enviar seis campos para marcar un libro como leído, justo lo que `PATCH` quiere evitar.
 - El servicio no solo comunica "no existe" (`null`): devuelve el libro ya convertido en DTO, porque el cliente necesita ver el resultado.
-- Fíjate en que `[ProducesResponseType]` solo lista `400` y `404`: el `200` ya queda declarado por el tipo `ActionResult<BookResponse>`.
+- Fíjate en que `[ProducesResponseType]` solo lista `400` y `404`: el `200` lo produce `Ok(book)` y, siguiendo la convención del paso, no lo declaramos.
 - **Una consecuencia a tener presente:** `book.Rating = request.Rating` *reemplaza* la valoración por la que envíes. Si marcas como leído un libro que ya tenía valoración 5 enviando `{}`, la valoración pasa a `null`. Es una decisión sencilla de este tutorial, y queda como idea de mejora (por ejemplo, conservar la valoración anterior si no se envía una nueva).
 :::
 ::::
