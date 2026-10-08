@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { stepTitle, tutorialTitle } from './core/content/route-titles';
 
 export const routes: Routes = [
   {
@@ -8,11 +9,13 @@ export const routes: Routes = [
   },
   {
     path: 'tutorials/:slug',
+    title: tutorialTitle,
     loadComponent: () =>
       import('./features/tutorial-reader/tutorial-overview.page').then((m) => m.TutorialOverviewPage),
   },
   {
     path: 'tutorials/:slug/:stepId',
+    title: stepTitle,
     loadComponent: () =>
       import('./features/tutorial-reader/step-reader.page').then((m) => m.StepReaderPage),
   },

@@ -1,0 +1,93 @@
+@if (manifest(); as tutorial) {
+  @if (available()) {
+    <div class="overview">
+      <header class="overview__header">
+        <a class="overview__back" routerLink="/">
+          <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>Catálogo
+        </a>
+        <p class="overview__eyebrow">Tutorial {{ tutorial.number }}</p>
+        <h1>{{ tutorial.title }}</h1>
+        <p class="overview__subtitle">{{ tutorial.subtitle }}</p>
+
+        <p class="meta">
+          <app-level-chip [level]="tutorial.level" />
+          <span class="meta__item">
+            <span class="material-symbols-outlined" aria-hidden="true">schedule</span>{{ duration() }}
+          </span>
+          <span class="meta__item">
+            <span class="material-symbols-outlined" aria-hidden="true">format_list_numbered</span
+            >{{ tutorial.steps.length }} pasos
+          </span>
+          @if (percent() > 0) {
+            <span class="meta__item">
+              <span class="material-symbols-outlined" aria-hidden="true">task_alt</span>{{ percent() }}% completado
+            </span>
+          }
+        </p>
+
+        <ul class="topics" aria-label="Temas">
+          @for (topic of tutorial.topics; track topic) {
+            <li>{{ topic }}</li>
+          }
+        </ul>
+
+        @if (cta().link; as link) {
+          <a class="cta" [routerLink]="link">
+            {{ cta().label }}
+            <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          </a>
+        }
+      </header>
+
+      <div class="overview__body">
+        <div class="overview__main">
+          @if (tutorial.whatYouWillBuild) {
+            <aside class="build">
+              <span class="material-symbols-outlined" aria-hidden="true">construction</span>
+              <div>
+                <h2>Lo que vas a construir</h2>
+                <p>{{ tutorial.whatYouWillBuild }}</p>
+              </div>
+            </aside>
+          }
+
+          @if (overview.error()) {
+            <p class="load-error" role="alert">No se pudo cargar la introducción de este tutorial.</p>
+          } @else if (overview.hasValue()) {
+            <app-markdown-view [content]="overview.value()!" />
+          }
+        </div>
+
+        <section class="overview__steps" aria-labelledby="steps-heading">
+          <h2 id="steps-heading">Pasos</h2>
+          <ol class="steps">
+            @for (step of tutorial.steps; track step.id; let i = $index) {
+              <li class="step">
+                <a [routerLink]="['/tutorials', tutorial.slug, step.id]">
+                  @if (completedIds().includes(step.id)) {
+                    <span class="material-symbols-outlined step__done" aria-label="Completado">check_circle</span>
+                  } @else {
+                    <span class="step__num" aria-hidden="true">{{ i + 1 }}</span>
+                  }
+                  <span class="step__title">{{ step.title }}</span>
+                  <span class="step__minutes">{{ step.estimatedMinutes }} min</span>
+                </a>
+              </li>
+            }
+          </ol>
+        </section>
+      </div>
+    </div>
+  } @else {
+    <app-not-found-message
+      icon="hourglass_top"
+      heading="Próximamente"
+      message="Este tutorial todavía está en preparación. Vuelve pronto o empieza con uno disponible."
+    />
+  }
+} @else {
+  <app-not-found-message
+    heading="Tutorial no encontrado"
+    message="No encontramos ese tutorial. Elige uno desde el catálogo."
+  />
+}

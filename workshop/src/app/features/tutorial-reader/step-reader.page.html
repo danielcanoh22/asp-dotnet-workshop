@@ -1,0 +1,102 @@
+@if (tutorial(); as tutorial) {
+  @if (step(); as step) {
+    <mat-sidenav-container class="reader">
+      <mat-sidenav
+        class="reader__sidenav"
+        [mode]="isMobile() ? 'over' : 'side'"
+        [opened]="navOpen()"
+        (openedChange)="navOpen.set($event)"
+        [fixedInViewport]="false"
+      >
+        <app-step-nav
+          [tutorial]="tutorial"
+          [currentId]="stepId()"
+          [completed]="completedIds()"
+          [percent]="percent()"
+          (picked)="closeNavOnMobile()"
+        />
+      </mat-sidenav>
+
+      <mat-sidenav-content class="reader__content">
+        <div class="reader__bar">
+          <button
+            matIconButton
+            type="button"
+            class="reader__menu"
+            (click)="navOpen.set(!navOpen())"
+            [attr.aria-label]="navOpen() ? 'Ocultar contenido' : 'Mostrar contenido'"
+            [attr.aria-expanded]="navOpen()"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true">{{ navOpen() ? 'menu_open' : 'menu' }}</span>
+          </button>
+          <p class="reader__position">Paso {{ stepNumber() }} de {{ total() }}</p>
+          @if (minutes()) {
+            <p class="reader__minutes">
+              <span class="material-symbols-outlined" aria-hidden="true">schedule</span>{{ minutes() }}
+            </p>
+          }
+        </div>
+
+        <article class="reader__article">
+          <h1 class="reader__title">{{ step.title }}</h1>
+
+          @if (markdown.error()) {
+            <p class="load-error" role="alert">
+              <span class="material-symbols-outlined" aria-hidden="true">error</span>
+              No se pudo cargar el contenido de este paso. Revisa tu conexión e inténtalo de nuevo.
+            </p>
+          } @else if (markdown.isLoading()) {
+            <p class="loading" aria-live="polite">Cargando…</p>
+          } @else if (markdown.hasValue()) {
+            <app-markdown-view [content]="markdown.value()!" />
+          }
+
+          <footer class="reader__footer">
+            <button
+              type="button"
+              class="complete-toggle"
+              [class.complete-toggle--done]="isDone()"
+              [attr.aria-pressed]="isDone()"
+              (click)="toggleDone()"
+            >
+              <span class="material-symbols-outlined" aria-hidden="true">{{
+                isDone() ? 'check_circle' : 'radio_button_unchecked'
+              }}</span>
+              {{ isDone() ? 'Completado' : 'Marcar como completado' }}
+            </button>
+
+            <div class="reader__pager">
+              @if (neighbours().prev; as prev) {
+                <a class="pager nav-prev" [routerLink]="['/tutorials', slug(), prev.id]">
+                  <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+                  <span class="pager__text"><small>Anterior</small>{{ prev.title }}</span>
+                </a>
+              }
+              @if (neighbours().next; as next) {
+                <a class="pager pager--next nav-next" [routerLink]="['/tutorials', slug(), next.id]">
+                  <span class="pager__text"><small>Siguiente</small>{{ next.title }}</span>
+                  <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+                </a>
+              } @else {
+                <a class="pager pager--next nav-finish" [routerLink]="['/tutorials', slug()]">
+                  <span class="pager__text"><small>Fin del tutorial</small>Volver al resumen</span>
+                  <span class="material-symbols-outlined" aria-hidden="true">flag</span>
+                </a>
+              }
+            </div>
+          </footer>
+        </article>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  } @else {
+    <app-not-found-message
+      heading="Paso no encontrado"
+      message="No encontramos ese paso en el tutorial. Puede que la dirección esté mal escrita."
+    />
+  }
+} @else {
+  <app-not-found-message
+    heading="Tutorial no encontrado"
+    message="No encontramos ese tutorial. Elige uno desde el catálogo."
+  />
+}

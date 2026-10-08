@@ -1,0 +1,32 @@
+<nav class="nav" aria-label="Contenido del tutorial">
+  <a class="nav__back" [routerLink]="['/tutorials', tutorial().slug]" (click)="picked.emit()">
+    <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+    <span class="nav__title">{{ tutorial().title }}</span>
+  </a>
+
+  <div class="nav__progress">
+    <mat-progress-bar mode="determinate" [value]="percent()" [attr.aria-label]="'Progreso del tutorial'" />
+    <span class="nav__percent">{{ percent() }}% completado</span>
+  </div>
+
+  <ol class="nav__steps">
+    @for (step of tutorial().steps; track step.id; let i = $index) {
+      <li>
+        <a
+          class="step-link"
+          [class.step-link--done]="completed().includes(step.id)"
+          [routerLink]="['/tutorials', tutorial().slug, step.id]"
+          [attr.aria-current]="step.id === currentId() ? 'step' : null"
+          (click)="picked.emit()"
+        >
+          @if (completed().includes(step.id)) {
+            <span class="material-symbols-outlined step-link__check" aria-label="Completado">check_circle</span>
+          } @else {
+            <span class="step-link__num" aria-hidden="true">{{ i + 1 }}</span>
+          }
+          <span class="step-link__title">{{ step.title }}</span>
+        </a>
+      </li>
+    }
+  </ol>
+</nav>

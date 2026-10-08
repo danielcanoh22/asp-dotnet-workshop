@@ -1,0 +1,94 @@
+:host {
+  display: block;
+}
+
+.nav {
+  padding: 1rem 0.75rem 2rem;
+}
+
+.nav__back {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 10px;
+  color: var(--mat-sys-on-surface);
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1.3;
+
+  &:hover {
+    background: var(--mat-sys-surface-container-high);
+  }
+
+  .material-symbols-outlined {
+    color: var(--mat-sys-primary);
+  }
+}
+
+.nav__progress {
+  margin: 0.9rem 0.6rem 1.1rem;
+
+  mat-progress-bar {
+    border-radius: 999px;
+  }
+}
+
+.nav__percent {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.nav__steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.55rem 0.6rem;
+  border-radius: 10px;
+  color: var(--mat-sys-on-surface-variant);
+  text-decoration: none;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background: var(--mat-sys-surface-container-high);
+    color: var(--mat-sys-on-surface);
+  }
+
+  &[aria-current='step'] {
+    background: var(--mat-sys-secondary-container);
+    color: var(--mat-sys-on-secondary-container);
+    font-weight: 600;
+  }
+}
+
+.step-link__num,
+.step-link__check {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: grid;
+  place-items: center;
+}
+
+.step-link__num {
+  border-radius: 50%;
+  border: 1.5px solid var(--mat-sys-outline);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.step-link__check {
+  color: var(--mat-sys-tertiary);
+  font-size: 1.6rem;
+}
