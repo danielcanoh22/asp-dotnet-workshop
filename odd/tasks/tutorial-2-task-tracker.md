@@ -42,9 +42,9 @@ Every step ends with code that builds and runs. Code states below are the contra
 ## Tasks
 - [x] T1 (S2, S3, S5) Reference solution built incrementally, verified (build 0 warnings, migrations applied, every endpoint smoke-tested). Route: inline (no writer reason). Commit b922ad5.
 - [x] T2 (S4, S5) Content: overview + steps 01–07. Route: delegated writer (parallelism with T3, disjoint files). Commit 58c1916.
-- [ ] T3 (S4, S5) Content: steps 08–14. Route: delegated writer (parallelism with T2, disjoint files).
-- [ ] T4 (S6) Manifest + registry + spec (RED first). Route: inline.
-- [ ] T5 (S1–S6) Final verification: ng test, ng build, replay diff vs reference, container balance. Route: inline + independent verifier for content.
+- [x] T3 (S4, S5) Content: steps 08–14. Route: delegated writer (parallelism with T2, disjoint files). Commit ccf3105.
+- [x] T4 (S6) Manifest + registry + spec (RED first). Route: inline. Commit 5602050.
+- [x] T5 (S1–S6) Final verification: ng test, ng build, replay diffs, container balance, dev server. Route: inline. Independent content verifier not run: Risk none (passive content + additive registration), both full replays matched and the parent re-ran both diffs.
 
 ## Log
 - L1 (2026-10-20, user): "Ya es hora de empezar a construir el tutorial #2"
@@ -58,3 +58,6 @@ Every step ends with code that builds and runs. Code states below are the contra
 - L7 Seam snapshot end-of-07 built in scratchpad `seam-step07/` and smoke-tested (CRUD in-memory, InitialCreate applied).
 - L8 Consistency fix (consequence of L2): tutorial 1 step 09 promised that tutorial 2 would swap Bookshelf's repository for a database "sin tocar controller ni servicio"; reworded as a hypothetical. T2 and T3 writers launched in parallel. T4 RED observed ("expected undefined to be 2"), GREEN 114/114; commit held until content lands.
 - L9 T2 evidence: 8 files, 2,642 lines. Writer replay from Markdown: 0 warnings/0 errors at every step, checkpoints curled; final diff vs seam rc=0 (parent re-ran the diff: rc=0). Deviations: Remove-Migration taught before Update-Database (keeps the snapshot byte-identical); temporary binding-demo endpoint in step 03 removed within the step. Unverified VS 2026 details are worded with caveats (Get-DbContext output, SQLite Toolbox support for VS 2026).
+- L10 T3 evidence: 7 files, 3,908 lines. Writer replay from Markdown starting at the seam: build 0/0 at every step, migrations identical to the reference, checkpoints and challenge solutions curled, final `.http` run in order on a fresh seed. Final diff vs reference: rc=0 (parent re-ran: rc=0). Deviations: tag Delete taught as a step-11 challenge (Find+Remove), refactored in 13; the cascade comment arrives in step 09.
+- L11 T4: manifest `task-tracker-api` (14 steps, 420 min), coming-soon #2 removed. RED "expected undefined to be 2" → GREEN.
+- L12 T5 (parent): `bunx ng test --watch=false` 12 files/114 tests passed; `bunx ng build` ok (initial 450.43 kB); containers and fences balanced in all 15 files; `ng serve` serves the app plus overview/01/14 markdown (200). Pre-existing, not fixed: `/tutorials/<slug>` returns 301 to a trailing-slash URL in dev because `public/tutorials/<slug>/` is a real folder (tutorial 1 too); it lands on the SPA (200 text/html). Real-browser visual check NOT done.
