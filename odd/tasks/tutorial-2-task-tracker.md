@@ -41,7 +41,7 @@ Every step ends with code that builds and runs. Code states below are the contra
 
 ## Tasks
 - [x] T1 (S2, S3, S5) Reference solution built incrementally, verified (build 0 warnings, migrations applied, every endpoint smoke-tested). Route: inline (no writer reason). Commit b922ad5.
-- [ ] T2 (S4, S5) Content: overview + steps 01–07. Route: delegated writer (parallelism with T3, disjoint files).
+- [x] T2 (S4, S5) Content: overview + steps 01–07. Route: delegated writer (parallelism with T3, disjoint files). Commit 58c1916.
 - [ ] T3 (S4, S5) Content: steps 08–14. Route: delegated writer (parallelism with T2, disjoint files).
 - [ ] T4 (S6) Manifest + registry + spec (RED first). Route: inline.
 - [ ] T5 (S1–S6) Final verification: ng test, ng build, replay diff vs reference, container balance. Route: inline + independent verifier for content.
@@ -57,3 +57,4 @@ Every step ends with code that builds and runs. Code states below are the contra
   Gotchas: enum query binding is case-sensitive (`sortBy=duedate` → 400); dotnet-ef needs a restored project ("Unable to retrieve project metadata" otherwise).
 - L7 Seam snapshot end-of-07 built in scratchpad `seam-step07/` and smoke-tested (CRUD in-memory, InitialCreate applied).
 - L8 Consistency fix (consequence of L2): tutorial 1 step 09 promised that tutorial 2 would swap Bookshelf's repository for a database "sin tocar controller ni servicio"; reworded as a hypothetical. T2 and T3 writers launched in parallel. T4 RED observed ("expected undefined to be 2"), GREEN 114/114; commit held until content lands.
+- L9 T2 evidence: 8 files, 2,642 lines. Writer replay from Markdown: 0 warnings/0 errors at every step, checkpoints curled; final diff vs seam rc=0 (parent re-ran the diff: rc=0). Deviations: Remove-Migration taught before Update-Database (keeps the snapshot byte-identical); temporary binding-demo endpoint in step 03 removed within the step. Unverified VS 2026 details are worded with caveats (Get-DbContext output, SQLite Toolbox support for VS 2026).
