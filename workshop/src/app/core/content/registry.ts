@@ -1,5 +1,6 @@
 import { BOOKSHELF_API } from './manifests/bookshelf-api.manifest';
 import { COMING_SOON } from './manifests/coming-soon.manifests';
+import { TASK_TRACKER_API } from './manifests/task-tracker-api.manifest';
 import { TutorialManifest } from './tutorial.model';
 
 /**
@@ -10,6 +11,7 @@ import { TutorialManifest } from './tutorial.model';
  */
 export const TUTORIAL_REGISTRY: readonly TutorialManifest[] = [
   BOOKSHELF_API,
+  TASK_TRACKER_API,
   ...COMING_SOON,
 ];
 
