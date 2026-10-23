@@ -151,10 +151,10 @@ Si alguno te suena borroso, vuelve al paso indicado:
 | --- | --- |
 | Taxonomía de errores, quién detecta cada uno, `400`/`404`/`409`/`412`/`422`/`500`, ProblemDetails (RFC 9457) | 1 |
 | Auditoría del punto de partida y `errors.http` | 2 |
-| Límites de DataAnnotations, `IValidatableObject` | 3 |
-| FluentValidation: `AbstractValidator<T>`, reglas, mensajes, `ValidateAsync`, `ToDictionary` | 4 |
+| Límites de DataAnnotations, `IValidatableObject`, `ValidationContext.GetService` como localizador de servicios | 3 |
+| FluentValidation: `AbstractValidator<T>`, reglas, mensajes, `ValidateAsync`, `ToDictionary`, cultura de los mensajes | 4 |
 | `ValidationFilter<T>`, `WithValidation<T>()`, `AddValidatorsFromAssemblyContaining`, el precio en OpenAPI | 5 |
-| `When`, `Must` con `TimeProvider`, extensiones de reglas, `Cascade(CascadeMode.Stop)` | 6 |
+| `When`, `Must` con `TimeProvider`, extensiones de reglas, `Cascade(CascadeMode.Stop)`, comprobaciones contra la base de datos en el handler | 6 |
 | `CustomizeProblemDetails`, `instance`, `traceId`, `ApiProblems` y `code`, `ProducesProblem` | 7 |
 | Reglas de negocio, `409` frente a `422`, `?force=true`, resultados frente a excepciones | 8 |
 | `IExceptionHandler`, `IProblemDetailsService`, log en .NET 10, Development frente a Production | 9 |
