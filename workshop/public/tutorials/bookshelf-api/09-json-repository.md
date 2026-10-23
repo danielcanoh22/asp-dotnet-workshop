@@ -31,7 +31,7 @@ Controller ──▶ IBookService ──▶ IBookRepository ──▶ books.json
 | Repository | ¿Cómo guardo y recupero los datos? | El archivo JSON. | HTTP, reglas de negocio. |
 
 :::why ¿Por qué separar si es más código?
-Porque cada capa puede cambiar sin arrastrar a las demás. En el paso 15 verás el recorrido completo de una petición; y en el siguiente tutorial sustituirás este repositorio por uno que usa una base de datos, **sin tocar controller ni servicio**. Como el servicio depende de la interfaz `IBookRepository`, es el mismo truco de la inyección de dependencias del paso anterior aplicado a una capa más.
+Porque cada capa puede cambiar sin arrastrar a las demás. En el paso 15 verás el recorrido completo de una petición; y si mañana quisieras sustituir este repositorio por uno que usa una base de datos, podrías hacerlo **sin tocar controller ni servicio**. Como el servicio depende de la interfaz `IBookRepository`, es el mismo truco de la inyección de dependencias del paso anterior aplicado a una capa más.
 :::
 
 ## El archivo de datos
@@ -372,7 +372,7 @@ public JsonBookRepository(IHostEnvironment environment)
 | `File.Create(_filePath)` | Crea el archivo; si ya existe, lo **sobrescribe por completo**. Por eso `SaveAsync` recibe la lista entera: reescribimos el archivo cada vez. |
 
 :::why ¿Por qué reescribir todo el archivo en cada cambio?
-Porque es lo más simple y suficiente para un archivo de unas pocas decenas de libros. Una base de datos real actualiza solo la fila afectada, y manejar eso a mano en un archivo sería mucho más complejo. Conocer el límite es parte del diseño: este repositorio no escalaría a miles de libros ni a muchos escritores simultáneos, y en el siguiente tutorial lo cambiarás por una base de datos real.
+Porque es lo más simple y suficiente para un archivo de unas pocas decenas de libros. Una base de datos real actualiza solo la fila afectada, y manejar eso a mano en un archivo sería mucho más complejo. Conocer el límite es parte del diseño: este repositorio no escalaría a miles de libros ni a muchos escritores simultáneos, y en el siguiente tutorial trabajarás con una base de datos real.
 :::
 
 ### ¿Por qué un singleton?

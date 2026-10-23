@@ -24,14 +24,6 @@ function comingSoon(
 
 export const COMING_SOON: readonly TutorialManifest[] = [
   comingSoon(
-    2,
-    'minimal-apis-efcore',
-    'Minimal APIs + EF Core + SQLite',
-    'Una base de datos real y endpoints más ligeros',
-    'beginner',
-    ['Minimal APIs', 'EF Core', 'SQLite', 'Migrations'],
-  ),
-  comingSoon(
     3,
     'advanced-validation-errors',
     'Validación avanzada y manejo de errores',

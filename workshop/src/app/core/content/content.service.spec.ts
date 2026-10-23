@@ -165,10 +165,20 @@ describe('TUTORIAL_REGISTRY', () => {
     expect(bookshelf?.steps).toHaveLength(15);
   });
 
-  it('lists tutorials 2 to 7 as coming soon', () => {
-    const upcoming = TUTORIAL_REGISTRY.filter((m) => m.number >= 2);
+  it('contains the task-tracker-api tutorial as number 2 with 14 steps', () => {
+    const taskTracker = TUTORIAL_REGISTRY.find((m) => m.slug === 'task-tracker-api');
 
-    expect(upcoming.map((m) => m.number)).toEqual([2, 3, 4, 5, 6, 7]);
+    expect(taskTracker?.number).toBe(2);
+    expect(taskTracker?.status).toBe('available');
+    expect(taskTracker?.steps).toHaveLength(14);
+    expect(taskTracker?.steps[0].file).toBe('01-from-controllers-to-minimal-apis.md');
+    expect(taskTracker?.steps[13].file).toBe('14-performance-docs-wrap-up.md');
+  });
+
+  it('lists tutorials 3 to 7 as coming soon', () => {
+    const upcoming = TUTORIAL_REGISTRY.filter((m) => m.number >= 3);
+
+    expect(upcoming.map((m) => m.number)).toEqual([3, 4, 5, 6, 7]);
     expect(upcoming.every((m) => m.status === 'coming-soon')).toBe(true);
   });
 });
