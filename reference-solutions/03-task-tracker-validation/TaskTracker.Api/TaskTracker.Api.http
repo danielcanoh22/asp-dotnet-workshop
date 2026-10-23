@@ -1,0 +1,127 @@
+@TaskTracker.Api_HostAddress = http://localhost:5283
+
+### --- Projects ---
+
+GET {{TaskTracker.Api_HostAddress}}/api/projects
+
+###
+
+GET {{TaskTracker.Api_HostAddress}}/api/projects/1
+
+###
+
+POST {{TaskTracker.Api_HostAddress}}/api/projects
+Content-Type: application/json
+
+{
+  "name": "Learn EF Core",
+  "description": "Work through the Task Tracker tutorial."
+}
+
+###
+
+PUT {{TaskTracker.Api_HostAddress}}/api/projects/1
+Content-Type: application/json
+
+{
+  "name": "Website redesign v2",
+  "description": "Second iteration of the new website."
+}
+
+###
+
+DELETE {{TaskTracker.Api_HostAddress}}/api/projects/2?force=true
+
+### --- Tasks ---
+
+GET {{TaskTracker.Api_HostAddress}}/api/projects/1/tasks
+
+###
+
+GET {{TaskTracker.Api_HostAddress}}/api/projects/1/tasks?status=Todo&sortBy=DueDate
+
+###
+
+GET {{TaskTracker.Api_HostAddress}}/api/projects/1/tasks?tag=frontend&sortBy=Priority
+
+###
+
+POST {{TaskTracker.Api_HostAddress}}/api/projects/1/tasks
+Content-Type: application/json
+
+{
+  "title": "Write the release notes",
+  "priority": "High",
+  "dueDate": "2030-12-01"
+}
+
+###
+
+GET {{TaskTracker.Api_HostAddress}}/api/tasks/1
+
+###
+
+PUT {{TaskTracker.Api_HostAddress}}/api/tasks/1
+Content-Type: application/json
+
+{
+  "title": "Design the new home page",
+  "description": "Hero section, features and footer.",
+  "priority": "High",
+  "dueDate": "2026-11-15",
+  "version": 0
+}
+
+###
+
+PATCH {{TaskTracker.Api_HostAddress}}/api/tasks/1/status
+Content-Type: application/json
+
+{
+  "status": "Done"
+}
+
+###
+
+DELETE {{TaskTracker.Api_HostAddress}}/api/tasks/2
+
+### --- Bulk operations ---
+
+POST {{TaskTracker.Api_HostAddress}}/api/projects/1/tasks/complete-all
+
+###
+
+DELETE {{TaskTracker.Api_HostAddress}}/api/projects/1/tasks/completed
+
+### --- Tags ---
+
+GET {{TaskTracker.Api_HostAddress}}/api/tags
+
+###
+
+POST {{TaskTracker.Api_HostAddress}}/api/tags
+Content-Type: application/json
+
+{
+  "name": "docs"
+}
+
+###
+
+POST {{TaskTracker.Api_HostAddress}}/api/tasks/1/tags
+Content-Type: application/json
+
+{
+  "tagId": 1
+}
+
+###
+
+DELETE {{TaskTracker.Api_HostAddress}}/api/tasks/1/tags/1
+
+###
+
+DELETE {{TaskTracker.Api_HostAddress}}/api/tags/3
+
+### Error cases live in errors.http
+

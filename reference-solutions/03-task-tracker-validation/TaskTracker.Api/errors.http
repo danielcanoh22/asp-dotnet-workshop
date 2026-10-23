@@ -1,0 +1,94 @@
+@TaskTracker.Api_HostAddress = http://localhost:5283
+
+# Every error the API can return, one request each.
+# Run them in order on a freshly seeded database (Drop-Database + Update-Database).
+
+### --- 400: validation (FluentValidation) ---
+
+POST {{TaskTracker.Api_HostAddress}}/api/projects
+Content-Type: application/json
+
+{
+  "name": ""
+}
+
+###
+
+POST {{TaskTracker.Api_HostAddress}}/api/projects/1/tasks
+Content-Type: application/json
+
+{
+  "title": "Born overdue",
+  "dueDate": "2020-01-01"
+}
+
+###
+
+POST {{TaskTracker.Api_HostAddress}}/api/tags
+Content-Type: application/json
+
+{
+  "name": "not a valid tag!"
+}
+
+###
+
+PUT {{TaskTracker.Api_HostAddress}}/api/tasks/1
+Content-Type: application/json
+
+{
+  "title": "Update without a version",
+  "priority": "High"
+}
+
+### --- 400: input the API cannot read ---
+
+GET {{TaskTracker.Api_HostAddress}}/api/projects/1/tasks?status=Unknown
+
+###
+
+POST {{TaskTracker.Api_HostAddress}}/api/projects
+Content-Type: application/json
+
+{ "name":
+
+### --- 404: the resource does not exist ---
+
+GET {{TaskTracker.Api_HostAddress}}/api/projects/999
+
+### --- 409: business rules ---
+
+DELETE {{TaskTracker.Api_HostAddress}}/api/projects/1
+
+###
+
+POST {{TaskTracker.Api_HostAddress}}/api/tags
+Content-Type: application/json
+
+{
+  "name": "backend"
+}
+
+### --- 409: optimistic concurrency ---
+
+# First save with the version we read: 204, the task moves to version 1.
+PUT {{TaskTracker.Api_HostAddress}}/api/tasks/1
+Content-Type: application/json
+
+{
+  "title": "Design the new home page",
+  "priority": "High",
+  "version": 0
+}
+
+###
+
+# Second save with the same (now stale) version: 409.
+PUT {{TaskTracker.Api_HostAddress}}/api/tasks/1
+Content-Type: application/json
+
+{
+  "title": "Design the home page (old copy)",
+  "priority": "Low",
+  "version": 0
+}
