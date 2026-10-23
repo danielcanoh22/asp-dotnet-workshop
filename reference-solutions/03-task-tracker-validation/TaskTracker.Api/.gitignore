@@ -1,0 +1,4 @@
+# Local SQLite database (recreated by migrations)
+*.db
+*.db-shm
+*.db-wal
