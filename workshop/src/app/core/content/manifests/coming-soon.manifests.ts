@@ -24,14 +24,6 @@ function comingSoon(
 
 export const COMING_SOON: readonly TutorialManifest[] = [
   comingSoon(
-    3,
-    'advanced-validation-errors',
-    'Validación avanzada y manejo de errores',
-    'Reglas de negocio, FluentValidation y respuestas consistentes',
-    'intermediate',
-    ['FluentValidation', 'ProblemDetails', 'Exception handling'],
-  ),
-  comingSoon(
     4,
     'clean-architecture',
     'Clean Architecture en ASP.NET Core',

@@ -175,10 +175,20 @@ describe('TUTORIAL_REGISTRY', () => {
     expect(taskTracker?.steps[13].file).toBe('14-performance-docs-wrap-up.md');
   });
 
-  it('lists tutorials 3 to 7 as coming soon', () => {
-    const upcoming = TUTORIAL_REGISTRY.filter((m) => m.number >= 3);
+  it('contains the advanced-validation-errors tutorial as number 3 with 12 steps', () => {
+    const validation = TUTORIAL_REGISTRY.find((m) => m.slug === 'advanced-validation-errors');
 
-    expect(upcoming.map((m) => m.number)).toEqual([3, 4, 5, 6, 7]);
+    expect(validation?.number).toBe(3);
+    expect(validation?.status).toBe('available');
+    expect(validation?.steps).toHaveLength(12);
+    expect(validation?.steps[0].file).toBe('01-error-taxonomy.md');
+    expect(validation?.steps[11].file).toBe('12-wrap-up.md');
+  });
+
+  it('lists tutorials 4 to 7 as coming soon', () => {
+    const upcoming = TUTORIAL_REGISTRY.filter((m) => m.number >= 4);
+
+    expect(upcoming.map((m) => m.number)).toEqual([4, 5, 6, 7]);
     expect(upcoming.every((m) => m.status === 'coming-soon')).toBe(true);
   });
 });
